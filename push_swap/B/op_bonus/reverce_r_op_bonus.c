@@ -52,12 +52,12 @@ void	do_rrb(t_list **stack_b, int flag)
 		write(1, "rrb\n", 4);
 }
 
-void do_rrr(t_list **a, t_list **b, int flag)
+void	do_rrr(t_list **a, t_list **b, int flag)
 {
 	if (!*a || !*b)
 		return ;
 	do_rra(a, 0);
 	do_rrb(b, 0);
 	if (flag == 1)
-		write(1,"rrr\n",4);
+		write(1, "rrr\n", 4);
 }

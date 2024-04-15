@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 10:58:53 by ajabri            #+#    #+#             */
-/*   Updated: 2024/04/15 12:42:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/15 18:23:24 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	fill_stack_a(t_list **stack_a, t_ps *ps)
 
 void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 {
+	int	j;
+
 	ps->ac = argc;
 	ps->av = argv;
 	ps->start = 0;
@@ -40,7 +42,7 @@ void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 	range(ps);
 	ps->end = ps->range;
 	free(ps->tab);
-	int j = 0;
+	j = 0;
 	while (j < ps->size)
 	{
 		free(ps->args[j]);
@@ -67,25 +69,25 @@ void	start_sorting(t_list **stack_a, t_list **stack_b, t_ps *ps)
 	}
 }
 
-void    free_stack(t_list **a, t_list **b)
+void	free_stack(t_list **a, t_list **b)
 {
-    t_list    *c;
+	t_list	*c;
 
-    while (*a)
-    {
-        c = (*a)->next;
-        free(*a);
-        *a = c;
-    }
-    if (*b)
-    {
-        while (*b)
-        {
-            c = (*b)->next;
-            free(*b);
-            *b = c;
-        }
-    }
+	while (*a)
+	{
+		c = (*a)->next;
+		free(*a);
+		*a = c;
+	}
+	if (*b)
+	{
+		while (*b)
+		{
+			c = (*b)->next;
+			free(*b);
+			*b = c;
+		}
+	}
 }
 
 int	main(int argc, char **argv)
@@ -101,5 +103,4 @@ int	main(int argc, char **argv)
 	get_init(&ps, argc, argv, &stack_a);
 	start_sorting(&stack_a, &stack_b, &ps);
 	free_stack(&stack_a, &stack_b);
-	// system("leaks push_swap");
 }

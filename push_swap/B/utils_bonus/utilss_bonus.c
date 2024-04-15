@@ -6,21 +6,11 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:10:24 by ajabri            #+#    #+#             */
-/*   Updated: 2024/03/06 21:48:09 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/04/15 18:47:57 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils_bonus.h"
-
-// size_t	ft_strlen(char *str)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (str[i])
-// 		i++;
-// 	return (i);
-// }
 
 void	ft_error(char *err)
 {

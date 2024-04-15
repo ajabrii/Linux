@@ -6,16 +6,15 @@
 /*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:55:48 by ajabri            #+#    #+#             */
-/*   Updated: 2024/03/06 21:42:48 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/04/15 18:45:00 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# include "../utils_bonus/utils_bonus.h"
 # include "../gnl/get_next_line.h"
+# include "../utils_bonus/utils_bonus.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -65,14 +64,15 @@ void				do_pb(t_list **stack_a, t_list **stack_b, int flag);
 
 void				do_rb(t_list **stack_b, int flag);
 void				do_ra(t_list **stack_a, int flag);
-void 				do_rr(t_list **stack_a, t_list **stack_b, int flag);
+void				do_rr(t_list **stack_a, t_list **stack_b, int flag);
 
 void				do_rra(t_list **stack_a, int flag);
 void				do_rrb(t_list **stack_b, int flag);
-void 				do_rrr(t_list **a, t_list **b, int flag);
+void				do_rrr(t_list **a, t_list **b, int flag);
 
 void				sort3(t_list **a);
 void				sort5(t_list **a, t_list **b, t_ps *ps);
 void				ft_sort(t_list **a, t_list **b, t_ps *ps);
 void				push_to_a(t_list **a, t_list **b, t_ps *data);
+void				free_stack(t_list **a, t_list **b);
 #endif

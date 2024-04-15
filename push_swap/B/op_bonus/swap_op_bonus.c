@@ -42,9 +42,9 @@ void	do_sb(t_list **stack_b, int flag)
 
 void	do_ss(t_list **stack_a, t_list **stack_b, int flag)
 {
-	if (!*stack_a|| !*stack_b || ft_lstsize(*stack_b) < 2 
-			|| ft_lstsize(*stack_a) < 2)
-			return ;
+	if (!*stack_a || !*stack_b || ft_lstsize(*stack_b) < 2
+		|| ft_lstsize(*stack_a) < 2)
+		return ;
 	do_sa(stack_a, 0);
 	do_sb(stack_b, 0);
 	if (flag == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:55:24 by ajabri            #+#    #+#             */
-/*   Updated: 2024/04/15 13:03:39 by codespace        ###   ########.fr       */
+/*   Updated: 2024/04/15 18:45:43 by ajabri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	fill_stack_a(t_list **stack_a, t_ps *ps)
 		ft_lstadd_back(stack_a, ft_lstnew(ps->tab[i]));
 		i++;
 	}
-	// if (check_sort(*stack_a))
-	// 	exit(0);
 }
 
 void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 {
+	int	j;
+
 	ps->ac = argc;
 	ps->av = argv;
 	ps->args = retunr_args(ps);
@@ -37,7 +37,7 @@ void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 	fill_stack_a(stack_a, ps);
 	ps->end = ps->range;
 	free(ps->tab);
-	int j = 0;
+	j = 0;
 	while (j < ps->size)
 	{
 		free(ps->args[j]);
@@ -46,12 +46,12 @@ void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 	free(ps->args);
 }
 
-void ft_do_op(char *op, t_list **a, t_list **b)
+void	ft_do_op(char *op, t_list **a, t_list **b)
 {
 	if (!ft_strncmp(op, "pa\n", 3))
-		do_pa(a,b, 0);
+		do_pa(a, b, 0);
 	else if (!ft_strncmp(op, "pb\n", 3))
-		do_pb(a,b, 0);
+		do_pb(a, b, 0);
 	else if (!ft_strncmp(op, "ra\n", 3))
 		do_ra(a, 0);
 	else if (!ft_strncmp(op, "rb\n", 3))
@@ -63,55 +63,35 @@ void ft_do_op(char *op, t_list **a, t_list **b)
 	else if (!ft_strncmp(op, "rrb\n", 4))
 		do_rrb(b, 0);
 	else if (!ft_strncmp(op, "rrr\n", 4))
-		do_rrr(a,b, 0);
+		do_rrr(a, b, 0);
 	else if (!ft_strncmp(op, "sa\n", 3))
 		do_sa(a, 0);
 	else if (!ft_strncmp(op, "sb\n", 3))
 		do_sb(b, 0);
 	else if (!ft_strncmp(op, "ss\n", 3))
-		do_ss(a,b, 0);
+		do_ss(a, b, 0);
 	else
 		ft_error("Error");
 }
 
-void read_op(t_list **a, t_list **b)
+void	read_op(t_list **a, t_list **b)
 {
-    char *op;
+	char	*op;
 
-    while (1)
-    {
-        op = get_next_line(0);
-        if (op == NULL)
-            break ;
-        ft_do_op(op,a,b);
-        free(op);
-    }
-    if (check_sort(*a) && !*b)
-		write(1,"\033[1;32mOK\033\n[0m", 11);
+	while (1)
+	{
+		op = get_next_line(0);
+		if (op == NULL)
+			break ;
+		ft_do_op(op, a, b);
+		free(op);
+	}
+	if (check_sort(*a) && !*b)
+		write(1, "\033[1;32mOK\033\n[0m", 11);
 	else
-		write(1,"\033[1;31mKO\033\n[0m", 11);
+		write(1, "\033[1;31mKO\033\n[0m", 11);
 }
 
-void    free_stack(t_list **a, t_list **b)
-{
-    t_list    *c;
-
-    while (*a)
-    {
-        c = (*a)->next;
-        free(*a);
-        *a = c;
-    }
-    if (*b)
-    {
-        while (*b)
-        {
-            c = (*b)->next;
-            free(*b);
-            *b = c;
-        }
-    }
-}
 int	main(int argc, char **argv)
 {
 	t_ps	ps;

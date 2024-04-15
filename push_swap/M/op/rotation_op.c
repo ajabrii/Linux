@@ -45,4 +45,3 @@ void	do_rb(t_list **stack_b)
 	(*stack_b) = second;
 	write(1, "rb\n", 3);
 }
-
