@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabri <ajabri@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 20:55:24 by ajabri            #+#    #+#             */
-/*   Updated: 2024/04/15 13:08:43 by ajabri           ###   ########.fr       */
+/*   Updated: 2024/04/15 13:03:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	fill_stack_a(t_list **stack_a, t_ps *ps)
 		ft_lstadd_back(stack_a, ft_lstnew(ps->tab[i]));
 		i++;
 	}
-	if (check_sort(*stack_a))
-		exit(0);
+	// if (check_sort(*stack_a))
+	// 	exit(0);
 }
 
 void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
@@ -36,6 +36,14 @@ void	get_init(t_ps *ps, int argc, char **argv, t_list **stack_a)
 	check_errors(ps);
 	fill_stack_a(stack_a, ps);
 	ps->end = ps->range;
+	free(ps->tab);
+	int j = 0;
+	while (j < ps->size)
+	{
+		free(ps->args[j]);
+		j++;
+	}
+	free(ps->args);
 }
 
 void ft_do_op(char *op, t_list **a, t_list **b)
@@ -83,6 +91,27 @@ void read_op(t_list **a, t_list **b)
 	else
 		write(1,"\033[1;31mKO\033\n[0m", 11);
 }
+
+void    free_stack(t_list **a, t_list **b)
+{
+    t_list    *c;
+
+    while (*a)
+    {
+        c = (*a)->next;
+        free(*a);
+        *a = c;
+    }
+    if (*b)
+    {
+        while (*b)
+        {
+            c = (*b)->next;
+            free(*b);
+            *b = c;
+        }
+    }
+}
 int	main(int argc, char **argv)
 {
 	t_ps	ps;
@@ -92,7 +121,8 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc == 1)
-		ft_error("ERROR 1");
+		return (0);
 	get_init(&ps, argc, argv, &stack_a);
 	read_op(&stack_a, &stack_b);
+	free_stack(&stack_a, &stack_b);
 }
